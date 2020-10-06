@@ -1,5 +1,5 @@
 <template>
-      <div class="SignUp0">
+      <div class="Signup0">
          <h1 id="Selectchar">Select A Character</h1>
          <a href="#"> 
          <img src="arrow.png" alt="" id="arrowR"/></a>
@@ -15,7 +15,7 @@
 
 <script>
 export default {
-    name : 'SignUp0'
+    name : 'Signup0'
 }
 </script>
 
