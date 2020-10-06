@@ -1,19 +1,11 @@
 <template>
-  <div id="app">
-  <Shop />
-  <Avatar />
-  </div>
+  <div id="app"></div>
 </template>
 
 <script>
-import Avatar from './components/ShopAvatar/Avatar'
-import Shop from './components/ShopAvatar/Shop'
 export default {
   name: "App",
-  components: {
-    Avatar,
-    Shop
-  },
+  components: {},
 };
 </script>
 
