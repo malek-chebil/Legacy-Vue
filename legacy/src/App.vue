@@ -1,19 +1,12 @@
 <template>
-  <div id="app">
-    <Logo />
-  </div>
+  <div id="app"></div>
 </template>
 
 <script>
-import Logo from './components/Logo.vue'
 export default {
-  name: 'App',
-  components: {
-    Logo
-  }
-}
+  name: "App",
+  components: {},
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
