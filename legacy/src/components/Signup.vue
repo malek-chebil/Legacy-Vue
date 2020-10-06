@@ -7,7 +7,7 @@
     <br />
     <input type="password" placeholder="Password" required />
     <br />
-    <button>Sign Up</button>
+    <button @click="wala1">Sign Up</button>
     <h5>I Already have an <a>Account</a></h5>
   </div>
 </template>
@@ -15,5 +15,18 @@
 <script>
 export default {
   name: "Signup",
+  
+  props: [
+    'signup',
+    'signup0'
+  ],
+  methods:{
+    wala1(){
+      this.$emit('wala', !this.signup, !this.signup0)
+      
+    }
+  }
+    
+  
 };
 </script>
