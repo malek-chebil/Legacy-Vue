@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <Logo v-if="displaylogo" />
-    <Admin  v-if="displayadmin" />
-    <Signup v-if="displaysignup" />
+    <Admin v-if="displayadmin" />
+    <Signup :signup = "displaysignup" :signup0 = "displaySignup0" @wala="selectCharId" v-if="displaysignup" />
     <Signup0 v-if="displaySignup0" />
     <Login v-if="displaylogin" />
     <NavBar v-if="displaynavbar" />
