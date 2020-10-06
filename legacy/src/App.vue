@@ -1,15 +1,41 @@
 <template>
   <div id="app">
+    <Logo v-if="displaylogo" />
+    <Admin  v-if="displayadmin" />
+    <Signup v-if="displaysignup" />
+    <Signup0 v-if="displaySignup0" />
+    <Login v-if="displaylogin" />
+    <NavBar v-if="displaynavbar" />
+    <Token v-if="displayToken" />
+    <Shop v-if="displayshop" />
+    <AboutUs v-if="displayAboutUs"  />
 
   </div>
 </template>
 
 <script>
+import Logo from './components/Logo'
+import Admin from './components/Admin'
+import Signup from './components/Signup'
+import Signup0 from './components/Signup0'
+import Login from './components/Login'
+import NavBar from './components/Navbar'
+import Token from './components/Token'
+import Shop from './components/ShopAvatar/Shop'
+import AboutUs from './components/AboutUs'
 export default {
 
   name: 'App',
   components : {
-    
+    Logo,
+    Admin,
+    Signup,
+    Signup0,
+    Login,
+    NavBar,
+    Token,
+    Shop,
+    AboutUs
 
   },
   data (){
