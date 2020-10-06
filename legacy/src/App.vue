@@ -1,5 +1,9 @@
 <template>
-  <div id="app"></div>
+
+  <div id="app">
+   
+  </div>
+
 </template>
 
 <script>
@@ -7,6 +11,7 @@ export default {
   name: "App",
   components: {},
 };
+
 </script>
 
 <style></style>
