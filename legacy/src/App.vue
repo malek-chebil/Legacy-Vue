@@ -2,12 +2,7 @@
   <div id="app">
     <Logo v-if="displaylogo" />
     <Admin v-if="displayadmin" />
-    <Signup
-      :signup="displaysignup"
-      :signup0="displaySignup0"
-      @wala="selectCharId"
-      v-if="displaysignup"
-    />
+    <Signup @selectCharId="selectCharId" v-if="displaysignup" />
     <Signup0 v-if="displaySignup0" />
     <Login
       :start="startS"
@@ -16,7 +11,12 @@
       :admin="admin"
       v-if="displaylogin"
     />
-    <NavBar v-if="displaynavbar" />
+    <NavBar
+      :AboutUs="displayAboutUs"
+      :Shop="displayShop"
+      :Home="displaysHome"
+      v-if="displaynavbar"
+    />
     <Token v-if="displayToken" />
     <Shop v-if="displayshop" />
     <AboutUs v-if="displayAboutUs" />
