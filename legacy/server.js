@@ -20,7 +20,7 @@ app.use(express.static(__dirname + '/client/dist'));
 
 app.use(express.json())
 
-mongoose.connect("mongodb+srv://famy:2222@cluster0.ye5b9.gcp.mongodb.net/famy?retryWrites=true&w=majority", { useNewUrlParser: true, 
+mongoose.connect("mongodb+srv://famy:1234@cluster0.eiv1w.gcp.mongodb.net/famy?retryWrites=true&w=majority", { useNewUrlParser: true, 
 useCreateIndex: true,
 useUnifiedTopology: true 
 });
