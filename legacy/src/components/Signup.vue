@@ -7,7 +7,7 @@
     <br />
     <input type="password" placeholder="Password" required />
     <br />
-    <button @click="wala1">Sign Up</button>
+    <button @click="triggerSelectCharId">Sign Up</button>
     <h5>I Already have an <a>Account</a></h5>
   </div>
 </template>
@@ -21,8 +21,8 @@ export default {
     'signup0'
   ],
   methods:{
-    wala1(){
-      this.$emit('wala', !this.signup, !this.signup0)
+    triggerSelectCharId(){
+      this.$emit('selectCharId', !this.signup, !this.signup0)
       
     }
   }
