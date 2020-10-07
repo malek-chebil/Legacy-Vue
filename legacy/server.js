@@ -19,8 +19,8 @@ var playerPosition={} // i was here if i sleep
 app.use(express.static(__dirname + '/dist'));
 
 app.use(express.json())
-
-mongoose.connect("mongodb+srv://famy:1234@cluster0.eiv1w.gcp.mongodb.net/FAMY?retryWrites=true&w=majority", { useNewUrlParser: true, 
+// mongodb+srv://famy:1234@cluster0.eiv1w.gcp.mongodb.net/FAMY?retryWrites=true&w=majority
+mongoose.connect("mongodb+srv://famy:2222@cluster0.ye5b9.gcp.mongodb.net/famy?retryWrites=true&w=majority", { useNewUrlParser: true, 
 useCreateIndex: true,
 useUnifiedTopology: true 
 });
