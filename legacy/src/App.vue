@@ -51,7 +51,7 @@ export default {
       displayToken: false,
       displayadmin: false,
     };
-  },
+   },
   methods: {
     changebalance(b) {
       this.newbalance = b;
