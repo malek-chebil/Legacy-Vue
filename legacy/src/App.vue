@@ -18,7 +18,7 @@
     <NavBar v-if="displaynavbar" />
     <Token v-if="displayToken" />
     <Shop v-if="displayshop" />
-    <AboutUs v-if="displayAboutUs" />
+    <AboutUs v-if="displayAboutUs"/>
   </div>
 </template>
 <script>
@@ -31,6 +31,7 @@ import NavBar from "./components/Navbar";
 import Token from "./components/Token";
 import Shop from "./components/ShopAvatar/Shop";
 import AboutUs from "./components/AboutUs";
+// import Simulation from "./components/Simulation";
 export default {
   name: "App",
   components: {
@@ -43,6 +44,7 @@ export default {
     Token,
     Shop,
     AboutUs,
+    // Simulation
   },
   data() {
     return {
