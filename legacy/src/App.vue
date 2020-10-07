@@ -2,31 +2,28 @@
   <div id="app">
     <Logo v-if="displaylogo" />
     <Admin v-if="displayadmin" />
-    <Signup :signup = "displaysignup" :signup0 = "displaySignup0" @selectCharId="selectCharId" v-if="displaysignup" />
-    <Signup0 v-if="displaySignup0" />
-    <Login v-if="displaylogin" />
+    <Login  @startS="startS" @toggleLoginSignup="toggleLoginSignup" @UpdateData="UpdateData" @admin="admin" v-if="displaylogin" />
+    <Signup  @selectCharId="selectCharId" v-if="displaysignup" />
+    <Signup0 :id="ID" @Mlogin="Mlogin" v-if="displaySignup0" />
     <NavBar v-if="displaynavbar" />
     <Token v-if="displayToken" />
     <Shop v-if="displayshop" />
     <AboutUs v-if="displayAboutUs"  />
-
   </div>
 </template>
-
 <script>
-import Logo from './components/Logo'
-import Admin from './components/Admin'
-import Signup from './components/Signup'
-import Signup0 from './components/Signup0'
-import Login from './components/Login'
-import NavBar from './components/Navbar'
-import Token from './components/Token'
-import Shop from './components/ShopAvatar/Shop'
-import AboutUs from './components/AboutUs'
+import Logo from "./components/Logo";
+import Admin from "./components/Admin";
+import Signup from "./components/Signup";
+import Signup0 from "./components/Signup0";
+import Login from "./components/Login";
+import NavBar from "./components/Navbar";
+import Token from "./components/Token";
+import Shop from "./components/ShopAvatar/Shop";
+import AboutUs from "./components/AboutUs";
 export default {
-
-  name: 'App',
-  components : {
+  name: "App",
+  components: {
     Logo,
     Admin,
     Signup,
@@ -35,73 +32,74 @@ export default {
     NavBar,
     Token,
     Shop,
-    AboutUs
-
+    AboutUs,
   },
-  data (){
+  data() {
     return {
-          token : 0,
-          ID:"",
-          userdata:{},
-          displaynavbar:false,
-          displaylogin:false,
-          displaysignup:true,
-          displayshop:false,
-          displaySimulation:false,
-          displaylogo:true,
-          displaySignup0:false,
-          displayAboutUs:false,
-          displayS:false,
-          displayToken:false,
-          displayadmin:false
-    }
+      token: 0,
+      ID: "",
+      userdata: {},
+      displaynavbar: false,
+      displaylogin: false,
+      displaysignup: true,
+      displayshop: false,
+      displaySimulation: false,
+      displaylogo: true,
+      displaySignup0: false,
+      displayAboutUs: false,
+      displayS: false,
+      displayToken: false,
+      displayadmin: false,
+    };
   },
   methods: {
-    changebalance(b){
+    changebalance(b) {
       this.newbalance = b;
     },
-    admin(){
+    admin() {
       this.displayadmin = true;
       this.displaylogin = false;
-      this.displaylogo = false
+      this.displaylogo = false;
     },
-    PassTokenToParent(token){
-       this.token = token
-     },
-    UserId(id){
+    PassTokenToParent(token) {
+      this.token = token;
+    },
+    UserId(id) {
       this.ID = id;
     },
-    Sset(){
+    Sset() {
       this.displayS = true;
     },
-    displaysHome(){
+    displaysHome() {
       this.displayAboutUs = false;
       this.displaySimulation = true;
       this.displayshop = false;
-     },
-    displayShop(){
+    },
+    displayShop() {
       this.displayAboutUs = false;
       this.displaySimulation = false;
       this.displayshop = true;
-     },
-     displayaboutUs(){
-       this.displayAboutUs = true;
-       this.displaySimulation = false;
-       this.displayshop = false;
-     },
-     toggleLoginSignup(){ // Toogle between login and signup if you have Already an account or you dont
+    },
+    displayaboutUs() {
+      this.displayAboutUs = true;
+      this.displaySimulation = false;
+      this.displayshop = false;
+    },
+    toggleLoginSignup() {
+      // Toogle between login and signup if you have Already an account or you dont
       this.displaylogin = !this.displaylogin;
       this.displaysignup = !this.displaysignup;
     },
-    UpdateData(data){
-     this.userdata = data;
+    UpdateData(data) {
+      this.userdata = data;
     },
-    selectCharId(id){ // Display the secound Signup component which is (signup0) To select the character that you will play with 
+    selectCharId(id) {
+      // Display the secound Signup component which is (signup0) To select the character that you will play with
       this.ID = id;
       this.displaySignup0 = true;
       this.displaysignup = false;
     },
-    startS(){
+    startS() {
       this.displaySimulation = true;
       this.displaySignup0 = false;
       this.displaylogo = false;
@@ -109,13 +107,11 @@ export default {
       this.displaylogin = false;
       this.displayToken = true;
     },
-    Mlogin(){
+    Mlogin() {
       this.displaySignup0 = false;
       this.displaylogin = true;
-    }
-  }
-}
+    },
+  },
+};
 </script>
-
-<style>
-</style>
+<style></style>
