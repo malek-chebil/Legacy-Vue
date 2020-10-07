@@ -42,7 +42,8 @@ export default {
           alert("Success Registration Please Pick A Character");
           this.$emit("selectCharId");
         }
-      });
+      })
+      .catch(err=>console.log(err));
     },
   },
 };
