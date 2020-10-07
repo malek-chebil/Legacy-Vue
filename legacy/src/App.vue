@@ -4,7 +4,7 @@
     <Admin v-if="displayadmin" />
     <Signup :signup = "displaysignup" :signup0 = "displaySignup0" @selectCharId="selectCharId" v-if="displaysignup" />
     <Signup0 v-if="displaySignup0" />
-    <Login v-if="displaylogin" />
+    <Login  @startS="startS" @toggleLoginSignup="toggleLoginSignup" @UpdateData="UpdateData" @admin="admin" v-if="displaylogin" />
     <NavBar v-if="displaynavbar" />
     <Token v-if="displayToken" />
     <Shop v-if="displayshop" />
