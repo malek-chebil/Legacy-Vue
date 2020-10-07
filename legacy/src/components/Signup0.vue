@@ -2,7 +2,6 @@
   <div class="body">
     <h1 id="Selectchar">Select A Character</h1>
     <a href="#" v-on:click="ScrollR"> <img src="arrow.png" alt="" id="arrowR" /></a>
-
     <div id="CardPlayer">
       <img :src="charsSrc[i]" width="75px" />
     </div>
@@ -51,12 +50,13 @@ export default {
       .then((data)=>{
           console.log(data.data);
           this.$emit('Mlogin')
-      })
-      
+      })   
   }
   },
 };
 </script>
 
+
 <style scoped>
 </style>
+
