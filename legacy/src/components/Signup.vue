@@ -8,7 +8,7 @@
     <input type="password" placeholder="Password" v-model="pass" required />
     <br />
     <button @click="triggerSelectCharId">Sign Up</button>
-    <h5>I Already have an <a>Account</a></h5>
+    <h5>I Already have an <a href="#" @click="toggle">Account</a></h5>
   </div>
 </template>
 <script>
@@ -32,17 +32,23 @@ export default {
       console.log("data -> username", this.username);
       console.log("data -> email", this.email);
       console.log("data -> pass", this.pass);
-      axios.post("/register", data).then((data) => {
-        console.log(data);
-        if (data.data.Registred) {
-          alert("Account exist");
-          this.username = "";
-          this.pass = "";
-        } else {
-          alert("Success Registration Please Pick A Character");
-          this.$emit("selectCharId");
-        }
-      });
+      axios
+        .post("/register", data)
+        .then((data) => {
+          console.log(data);
+          if (data.data.Registred) {
+            alert("Account exist");
+            this.username = "";
+            this.pass = "";
+          } else {
+            alert("Success Registration Please Pick A Character");
+            this.$emit("selectCharId");
+          }
+        })
+        .catch((err) => console.log(err));
+    },
+    toggle() {
+      this.$emit("toggleLoginSignup");
     },
   },
 };

@@ -1,12 +1,12 @@
 <template>
   <div className="body">
     <h1 className="LoginS">Login</h1>
-    <input type="username" placeholder="Username" />
+    <input type="username" placeholder="Username" v-model="username" />
     <br />
-    <input type="password" placeholder="Password" />
+    <input type="password" placeholder="Password" v-model="password"/>
     <br />
     <button @click="AxiosLogin">Login</button>
-    <h5>Create new</h5>
+    <h5>Create new <a href="#" @click="toggle">Account</a></h5>
   </div>
 </template>
 <script>
@@ -24,11 +24,15 @@ export default {
   props: [],
 
   methods: {
+      toggle(){
+          this.$emit("toggleLoginSignup")
+      },
     AxiosLogin() {
       let data = {
         name: this.username,
         password: this.password,
       };
+      console.log(data)
       axios.post("/login", data).then((data) => {
         data = data.data;
         console.log(data);
@@ -44,7 +48,7 @@ export default {
             if (data.Registred) {
               Toast.success("Success Login", 2500);
               this.$emit("updatedata", data);
-              this.$emit("start");
+              this.$emit("startS");
             } else {
               (this.username = ""), (this.password = "");
               setTimeout(() => {

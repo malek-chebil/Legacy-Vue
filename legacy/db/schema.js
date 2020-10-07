@@ -212,6 +212,11 @@ const avatarSchema = mongoose.Schema({
 });
 
 const Avatar = mongoose.model("Avatar", avatarSchema);
+// var avatar = new Avatar({ avatar: 'Neteller 20$', image: "https://www.sitesdeparissportifs.com/assets/images/neteller-logo1.jpg" , price: 60 });
+// avatar.save(function (err, book) {
+//   if (err) return console.error(err);
+//   console.log(avatar.avatar + " saved to bookstore collection.");
+// });
 
 const schemareport=new mongoose.Schema({
   reports:Array
