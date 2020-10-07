@@ -14,10 +14,10 @@
 <script>
 export default {
   name: "Signup",
+
   props: ["signup", "signup0"],
   methods: {
     wala1() {
-      console.log("func here !");
       this.$emit("wala", !this.signup, !this.signup0);
     },
   },
