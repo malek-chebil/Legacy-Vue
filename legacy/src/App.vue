@@ -2,14 +2,13 @@
   <div id="app">
     <Logo v-if="displaylogo" />
     <Admin v-if="displayadmin" />
-    <Signup :signup = "displaysignup" :signup0 = "displaySignup0" @selectCharId="selectCharId" v-if="displaysignup" />
-    <Signup0 v-if="displaySignup0" />
     <Login  @startS="startS" @toggleLoginSignup="toggleLoginSignup" @UpdateData="UpdateData" @admin="admin" v-if="displaylogin" />
+    <Signup  @selectCharId="selectCharId" v-if="displaysignup" />
+    <Signup0 :id="ID" @Mlogin="Mlogin" v-if="displaySignup0" />
     <NavBar v-if="displaynavbar" />
     <Token v-if="displayToken" />
     <Shop v-if="displayshop" />
     <AboutUs v-if="displayAboutUs"  />
-
   </div>
 </template>
 

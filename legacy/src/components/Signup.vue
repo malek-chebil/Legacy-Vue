@@ -18,12 +18,11 @@ export default {
   name: "Signup",
   
   props: [
-    'signup',
-    'signup0'
+    
   ],
   methods:{
     triggerSelectCharId(){
-      this.$emit('selectCharId', !this.signup, !this.signup0)
+      this.$emit('selectCharId')
       
     }
   }
