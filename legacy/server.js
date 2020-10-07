@@ -16,7 +16,7 @@ var matrix = Array.from(Array(27), (x) => Array(30).fill(0));
 var playerPosition={} // i was here if i sleep  
 //////////////
 
-app.use(express.static(__dirname + '/client/dist'));
+app.use(express.static(__dirname + '/dist'));
 
 app.use(express.json())
 
