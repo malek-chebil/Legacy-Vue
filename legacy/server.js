@@ -73,6 +73,7 @@ app.post("/register", (req, res) => {
   })
 
   app.post('/fechdata',(req,res)=>{
+    console.log('app.post fetchData response and playerPosition ====>', res,playerPosition)
 res.send(playerPosition)
   })
 

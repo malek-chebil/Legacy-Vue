@@ -14,11 +14,15 @@
       @toggleLoginSignup="toggleLoginSignup"
       v-if="displaysignup"
     />
-    <Signup0 :id="ID" @Mlogin="Mlogin" v-if="displaySignup0" />
+    <Signup0 :id="this.ID" @Mlogin="Mlogin" v-if="displaySignup0" />
     <NavBar v-if="displaynavbar" />
     <Token v-if="displayToken" />
     <Shop v-if="displayshop" />
     <AboutUs v-if="displayAboutUs"/>
+    <Simulation v-if="displaySimulation" 
+      :data="this.userdata"
+      @UserId="UserId"
+       />
   </div>
 </template>
 <script>
@@ -31,7 +35,9 @@ import NavBar from "./components/Navbar";
 import Token from "./components/Token";
 import Shop from "./components/ShopAvatar/Shop";
 import AboutUs from "./components/AboutUs";
-// import Simulation from "./components/Simulation";
+import Simulation from "./components/Simulation/Simulation";
+// import Toast from "light-toast";
+
 export default {
   name: "App",
   components: {
@@ -44,7 +50,7 @@ export default {
     Token,
     Shop,
     AboutUs,
-    // Simulation
+    Simulation
   },
   data() {
     return {
