@@ -9,6 +9,7 @@
 <script>
 import axios from "axios";
 export default {
+  name : "Maincharacter",
   data() {
     return {
       character: 0,
@@ -20,21 +21,21 @@ export default {
       FR: 0,
       face: [
         {
-          D0: `./chars/${this.props.skin}/FD/fd0.png`,
-          D1: `./chars/${this.props.skin}/FD/fd1.png`,
-          D2: `./chars/${this.props.skin}/FD/fd2.png`,
-          R0: `./chars/${this.props.skin}/FR/fr0.png`,
-          R1: `./chars/${this.props.skin}/FR/fr1.png`,
-          R2: `./chars/${this.props.skin}/FR/fr2.png`,
-          L0: `./chars/${this.props.skin}/FL/fl0.png`,
-          L1: `./chars/${this.props.skin}/FL/fl1.png`,
-          L2: `./chars/${this.props.skin}/FL/fl2.png`,
-          u0: `./chars/${this.props.skin}/FU/fu0.png`,
-          u1: `./chars/${this.props.skin}/FU/fu1.png`,
-          u2: `./chars/${this.props.skin}/FU/fu2.png`,
+          D0: `../../../public/images/chars/${this.skin}/FD/fd0.png`,
+          D1: `../../../public/images/chars/${this.skin}/FD/fd1.png`,
+          D2: `../../../public/images/chars/${this.skin}/FD/fd2.png`,
+          R0: `../../../public/images/chars/${this.skin}/FR/fr0.png`,
+          R1: `../../../public/images/chars/${this.skin}/FR/fr1.png`,
+          R2: `../../../public/images/chars/${this.skin}/FR/fr2.png`,
+          L0: `../../../public/images/chars/${this.skin}/FL/fl0.png`,
+          L1: `../../../public/images/chars/${this.skin}/FL/fl1.png`,
+          L2: `../../../public/images/chars/${this.skin}/FL/fl2.png`,
+          u0: `../../../public/images/chars/${this.skin}/FU/fu0.png`,
+          u1: `../../../public/images/chars/${this.skin}/FU/fu1.png`,
+          u2: `../../../public/images/chars/${this.skin}/FU/fu2.png`,
         },
       ],
-      currentP: `./chars/${this.props.skin}/FD/fd0.png`,
+      currentP: `../../../public/images/chars/${this.skin}/FD/fd0.png`,
       positionX: 230,
       positionY: 490,
     };
@@ -71,16 +72,17 @@ export default {
             method: "post",
             url: "/position",
             data: {
-              positionX: this.state.positionX - 10,
-              positionY: this.state.positionY,
-              name: this.state.name,
-              id: this.state.Id,
+              positionX: this.positionX - 10,
+              positionY: this.positionY,
+              name: this.name,
+              id: this.Id,
               Face: "top",
-              skin: this.props.skin,
+              skin: this.skin,
               face: face,
             },
           }).then((data) => {
             if (data.data.move) {
+              console.log(data.data.move);
             }
           });
         }
@@ -114,6 +116,7 @@ export default {
           },
         }).then((data) => {
           if (data.data.move) {
+            console.log(data.data.move);
           }
         });
       }
@@ -145,6 +148,7 @@ export default {
             },
           }).then((data) => {
             if (data.data.move) {
+              console.log(data.data.move);
             }
           });
         }
@@ -177,6 +181,7 @@ export default {
             },
           }).then((data) => {
             if (data.data.move) {
+              console.log(data.data.move);
             }
           });
         }
