@@ -1,12 +1,12 @@
 <template>
-  <div className="body">
-    <h1 className="LoginS">Login</h1>
+  <div class="body">
+    <h1 class="LoginS">Login</h1>
     <input type="username" placeholder="Username" v-model="username" />
     <br />
     <input type="password" placeholder="Password" v-model="password"/>
     <br />
-    <button @click="AxiosLogin">Login</button>
-    <h5>Create new <a href="#" @click="toggle">Account</a></h5>
+    <button id="loginB" @click="AxiosLogin">Login</button>
+    <h5 id='Sign' >Create new <a href="#" @click="toggle">Account</a></h5>
   </div>
 </template>
 <script>
@@ -62,3 +62,47 @@ export default {
   },
 };
 </script>
+
+
+<style>
+.body {
+    position: relative;
+    top:50px;
+    left:450px;
+    background: #f6f5f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: "Montserrat", sans-serif;
+    height: 65vh;
+    width: 400px;
+    border: #592bff;
+    border-radius: 10%;
+    border-style: solid;
+  }
+  .LoginS{
+    position: relative;
+    top:-50PX;
+  }
+   #loginB{
+    position: relative;
+    top:50px;
+  }
+  #Sign{
+   position: relative;
+   top:50px;
+ }
+  button {
+    border-radius: 20px;
+    border: 1px solid black;
+    background-color: #592bff;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+  }
+</style>>
