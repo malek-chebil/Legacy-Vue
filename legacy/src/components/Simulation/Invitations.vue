@@ -1,9 +1,9 @@
 <template>
   <div id="invcontainer">
-    <div v-for="elem in elemnts" :key="elem.id"> 
-      <div className="invitations"  >You have invitation from{{elem.from}}</div>
-      <img src="/images/tick-logo.png"  @click="acceptinvitation" />
-      <img src="/images/x-logo.png"  @click="rejectinvitation" />
+    <div v-for="elem in Invitations" :key="elem.id">
+      <div className="invitations">You have invitation from{{ elem.from }}</div>
+      <img src="/images/tick-logo.png" @click="acceptinvitation" />
+      <img src="/images/x-logo.png" @click="rejectinvitation" />
     </div>
   </div>
 </template>
@@ -14,37 +14,45 @@ export default {
     name:"Invitations",
     data() {
         return {
-             Invitations:[]
+             Invitations:['achref invited you']
         }
     },
+    props : [
+        "id"
+    ],
     methods:{
         rejectinvitation(e){
             let data ={
-                to=this.id,
-                id=e.target.id
+                to : this.id,
+                id : e.target.id
             }
             this.$emit("hideInv")
             axios.post("/rejectinvitation" ,data)
         },
         acceptinvitation(e){
             let data={
-                to=this.id,
-                id=e.target.id
+                to : this.id,
+                id : e.target.id
             }
             this.$emit("hideInv")
             axios.post("/acceptinvitation" , data)
         },
         mounted() {
-            let data ={
-                id=this.id,
-                to=this.id
-            }
+            this.$nextTick(function () {
+                let data ={
+                    id : this.id,
+                    to : this.id
+                }
+            console.log('mounted Invitations')
+
             axios.post("/fetchIn" , data).then(data =>{
                 this.Invitations = data.data
             })
-        },
+            })
+            }
+        
 
-    }
+    },
 
 }
 </script>
