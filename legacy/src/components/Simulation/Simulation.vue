@@ -1,14 +1,29 @@
 <template>
-
-   <div id="map"> 
-             <Maincharacter MainP={this.state.MpPosition} id={this.state.id} skin={this.props.data.skin} unmount={this.UnmountP}/>
-        {Players}
-        {this.state.displayInvitations?<Invitations id={this.props.data.Id} hide={this.hideInv}/>:null}
-        {this.state.displayFriends?<Friends friends={this.state.friends} chat={this.showchat}/>:null}
-        {this.state.displayChat?<Chat messages={this.state.friends[this.state.selectedfriend]} from={this.state.name} position={this.state.selectedfriend}/>:null}
-        <img src="Friends.png" id="FriendsLogo" onClick={this.tooglefriends}/>
-        <img src="send-m.png" id="invitations" onClick={this.tooglechatinvitations} />
-      </div>
+  <div id="map">
+    <Maincharacter
+      MainP="{this.state.MpPosition}"
+      id="{this.state.id}"
+      skin="{this.props.data.skin}"
+      unmount="{this.UnmountP}"
+    />
+    {Players} {this.state.displayInvitations?<Invitations
+      id="{this.props.data.Id}"
+      hide="{this.hideInv}"
+    />:null} {this.state.displayFriends?<Friends
+      friends="{this.state.friends}"
+      chat="{this.showchat}"
+    />:null} {this.state.displayChat?<Chat
+      messages="{this.state.friends[this.state.selectedfriend]}"
+      from="{this.state.name}"
+      position="{this.state.selectedfriend}"
+    />:null}
+    <img src="Friends.png" id="FriendsLogo" onClick="{this.tooglefriends}" />
+    <img
+      src="send-m.png"
+      id="invitations"
+      onClick="{this.tooglechatinvitations}"
+    />
+  </div>
 </template>
 <script>
 import Maincharacter from "./Mainchar.jsx"
@@ -23,7 +38,7 @@ import Toast from "light-toast";
 export default {
 
   data() {
-    return { 
+    return {
         name: "Simulation",
         components: {
             Maincharacter,
@@ -68,10 +83,10 @@ export default {
   }
           }
 
-          
+
       }
-     
-        
+
+
   },
   methods: {
     deleteposition(){
@@ -81,7 +96,7 @@ export default {
       data:{x:this.UnmountPX,y:this.UnmountPY}
     })
    },
-   
+
 
   UnmountP(x,y){
     this.setState({UnmountPX:x,UnmountPY:y})
@@ -101,7 +116,7 @@ export default {
 ///////////////////
     tooglefriends(){
       this.setState({displayFriends:!this.state.displayFriends,displayInvitations:false,displayChat:false})
-      
+
     },
 //////////////////
     static getDerivedStateFromProps(nextprops){
@@ -118,7 +133,7 @@ export default {
           method: 'post',
           data:{id:this.props.data.Id,Face:`./chars/${this.props.data.skin}/FD/fd0.png`,skin:this.props.data.skin}
         }).then(data=>{
-          
+
           setTimeout(()=>{
             this.setState({UnmountPX:(this.state.PsPositions[this.state.id].split("-")[0])*1,UnmountPY:(this.state.PsPositions[this.state.id].split("-")[1].split("=")[0]*1)})
           },1000)
@@ -131,8 +146,7 @@ export default {
       clearInterval(this.state.s)
       clearInterval(this.state.d)
     }
-    
+
   }
 };
-
 </script>

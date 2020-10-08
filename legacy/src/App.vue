@@ -16,9 +16,9 @@
     />
     <Signup0 :id="ID" @Mlogin="Mlogin" v-if="displaySignup0" />
     <NavBar v-if="displaynavbar" />
-    <Token v-if="displayToken" />
-    <Shop v-if="displayshop" />
-    <AboutUs v-if="displayAboutUs"/>
+    <Token @Pass="Pass" @newbalance="newbalance" v-if="displayToken" />
+    <Shop @changebalance="changebalance" v-if="displayShop" />
+    <AboutUs v-if="displayAboutUs" />
   </div>
 </template>
 <script>
@@ -54,7 +54,7 @@ export default {
       displaynavbar: false,
       displaylogin: false,
       displaysignup: true,
-      displayshop: false,
+      displaysShop: false,
       displaySimulation: false,
       displaylogo: true,
       displaySignup0: false,
@@ -85,17 +85,17 @@ export default {
     displaysHome() {
       this.displayAboutUs = false;
       this.displaySimulation = true;
-      this.displayshop = false;
+      this.displayShop = false;
     },
     displayShop() {
       this.displayAboutUs = false;
       this.displaySimulation = false;
-      this.displayshop = true;
+      this.displayShop = true;
     },
     displayaboutUs() {
       this.displayAboutUs = true;
       this.displaySimulation = false;
-      this.displayshop = false;
+      this.displayShop = false;
     },
     toggleLoginSignup() {
       // Toogle between login and signup if you have Already an account or you dont
