@@ -26,12 +26,18 @@ const id=new AccountNumberdB({AccountNumber:0})
 const registerUser = async function (data, res) {
   var AccountNumber;
   var user;
-  await Users.findOne({ name: data.name }).then((result) => {user = result;});
+  await Users.findOne({ name: data.name }).then((result) => {
+    console.log('result ====>', result)
+    user = result;
+    console.log('user after ass ====>', user)
+  });
   if (user !== null) {
     console.log("done");
     res.send({ Registred: true });
   }else {
-    await AccountNumberdB.find().then((data) => {AccountNumber = data[0].AccountNumber;});
+    await AccountNumberdB.find().then((data) => {
+      console.log('data ===>',data);
+      AccountNumber = data[0].AccountNumber;});
 
     await AccountNumberdB.updateOne({ AccountNumber: AccountNumber + 1 });
 

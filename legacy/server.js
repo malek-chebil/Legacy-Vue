@@ -19,7 +19,8 @@ var playerPosition={} // i was here if i sleep
 app.use(express.static(__dirname + '/dist'));
 
 app.use(express.json())
-// mongodb+srv://famy:1234@cluster0.eiv1w.gcp.mongodb.net/FAMY?retryWrites=true&w=majority
+// mongodb+srv://famy:2222@cluster0.ye5b9.gcp.mongodb.net/famy?retryWrites=true&w=majority // ALA
+// mongodb+srv://famy:1234@cluster0.eiv1w.gcp.mongodb.net/famy?retryWrites=true&w=majority // Malek
 mongoose.connect("mongodb+srv://famy:2222@cluster0.ye5b9.gcp.mongodb.net/famy?retryWrites=true&w=majority", { useNewUrlParser: true, 
 useCreateIndex: true,
 useUnifiedTopology: true 
@@ -248,7 +249,7 @@ console.table(matrix)
 // var playerPosition={} // i was here if i sleep  
 // //////////////
 
-// app.use(express.static(__dirname + '/client/dist'));
+// app.use(express.static(__dirname + '/dist'));
 
 // app.use(express.json())
 

@@ -2,7 +2,7 @@
   <div id="map">
     <h1>Mainchar</h1>
     
-    <h1>Invitations</h1>
+    <Invitations v-if="displayInvitations" :id="data.Id" @hideInv="hideInv"/>
     <h1>Friends</h1>
     <h1>Chat</h1>
     <img src="Friends.png" id="FriendsLogo" />
@@ -22,10 +22,12 @@
     // </div>
 import axios from "axios";
 import Toast from "light-toast";
+import Invitations from './Invitations'
 // import Characters from './Chars'
 export default {
   name: "Simulation",
   components: {
+    Invitations
     // Characters
   },
   data() {
