@@ -5,8 +5,8 @@
     <Invitations v-if="displayInvitations" :id="data.Id" @hideInv="hideInv"/>
     <h1>Friends</h1>
     <h1>Chat</h1>
-    <img src="Friends.png" id="FriendsLogo" />
-    <img src="send-m.png" id="invitations" />
+    <img src="/images/Friends.png" id="FriendsLogo" />
+    <img src="/images/send-m.png" id="invitations" />
   </div>
 </template>
 
@@ -40,7 +40,7 @@ export default {
       id: 0,
       name: "",
       currentcharacter: "",
-      displayInvitations: false,
+      displayInvitations: true,
       displayFriends: false,
       displayChat: false,
       displayAboutUs: false,
