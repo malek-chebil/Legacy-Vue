@@ -1,8 +1,13 @@
 <template>
   <div id="map">
-    <Maincharacter :MainP="MpPosition" :id="id" :skin="this.data.skin" @UnmountP="UnmountP" />
-    
-    <Invitations v-if="displayInvitations" :id="data.Id" @hideInv="hideInv"/>
+    <Maincharacter
+      :MainP="MpPosition"
+      :id="this.data.Id"
+      :skin="this.data.skin"
+      @UnmountP="UnmountP"
+    />
+
+    <Invitations v-if="displayInvitations" :id="data.Id" @hideInv="hideInv" />
     <h1>Friends</h1>
     <h1>Chat</h1>
     <img src="/images/Friends.png" id="FriendsLogo" />
@@ -11,25 +16,25 @@
 </template>
 
 <script>
-    // <div 
-    // v-for="(keyName, keyIndex) in keyNames" :key="keyIndex"
-    // >
-    //   <Characters v-if="(keyName * 1) != this.id"
-    //   :position="this.PsPositions[keyName]" 
-    //   :id="keyName" 
-    //   :Mid="this.id"
-    //   />
-    // </div>
+// <div
+// v-for="(keyName, keyIndex) in keyNames" :key="keyIndex"
+// >
+//   <Characters v-if="(keyName * 1) != this.id"
+//   :position="this.PsPositions[keyName]"
+//   :id="keyName"
+//   :Mid="this.id"
+//   />
+// </div>
 import axios from "axios";
 import Toast from "light-toast";
-import Invitations from './Invitations'
-import Maincharacter from './MainChar'
+import Invitations from "./Invitations";
+import Maincharacter from "./MainChar";
 // import Characters from './Chars'
 export default {
   name: "Simulation",
   components: {
     Invitations,
-    Maincharacter
+    Maincharacter,
   },
   data() {
     return {
@@ -49,7 +54,7 @@ export default {
       // keyNames: this.getKeys(),
       s: setInterval(() => {
         axios.post("/fechdata").then((result) => {
-          console.log('fechdata for PsPositions ===>', result.data)
+          console.log("fechdata for PsPositions ===>", result.data);
           this.PsPositions = result.data;
         });
       }, 150),
@@ -58,19 +63,17 @@ export default {
         axios.post("/fetchFriends", data).then((result) => {
           this.friends = result.data;
         });
-      }, 2000)
+      }, 2000),
     };
   },
-  props: [ 
-    "data"
-    ],
+  props: ["data"],
   methods: {
     deleteposition() {
       let data = {
         x: this.UnmountPX,
         y: this.UnmountPY,
       };
-      axios("/deleteP", data)
+      axios("/deleteP", data);
     },
     UnmountP(x, y) {
       this.UnmountPX = x;
@@ -104,26 +107,33 @@ export default {
     //   }
   },
 
-  mounted(){
+  mounted() {
     this.$nextTick(function () {
       Toast.info(
         "Moves: \n Up : W  \n Right : D  \n Left : A \n  Down : S",
         5000
       );
-      this.$emit("UserId", this.data.id);
-      let data = { 
-       id: this.Id,
-       Face: `./chars/${this.data.skin}/FD/fd0.png`,
-       skin: this.data.skin }
-       console.log(data)
-      axios.post('/Rposition', data)
-      .then(() => {
-        console.log(data)
-      setTimeout(() => {
-        this.UnmountPX = (this.PsPositions[this.id].split("-")[0]) * 1, 
-        this.UnmountPY = (this.PsPositions[this.id].split("-")[1].split("=")[0] * 1) })
-      }, 1000)
-      this.MpPosition = data.data 
+      console.log("Simul mounted this.data.id ====>", this.data.Id);
+      console.log("Simul mounted this.data.skin ====>", this.data.skin);
+      this.$emit("UserId", this.id);
+      let data = {
+        id: this.data.Id,
+        Face: `../../../public/images/chars/${this.data.skin}/FD/fd0.png`,
+        skin: this.data.skin,
+      };
+      console.log(data);
+      axios.post("/Rposition", data).then((data) => {
+        setTimeout(() => {
+          this.UnmountPX = this.PsPositions[this.id].split("-")[0] * 1;
+          this.UnmountPY =
+            this.PsPositions[this.id].split("-")[1].split("=")[0] * 1;
+        }, 1000);
+        console.log("this.UnmountPX ====>", this.UnmountPX);
+        console.log("this.UnmountPY ====>", this.UnmountPY);
+
+        this.MpPosition = data.data;
+        console.log("this.MpPosition ====>", this.MpPosition);
+      });
     });
   },
   beforeDestroy() {
@@ -131,16 +141,15 @@ export default {
     clearInterval(this.s);
     clearInterval(this.d);
   },
-    watch : {
-       id : function(val) {
-         this.id = val
-       },
-       name : function(val) {
-         this.name = val
-       }
-    }
+  watch: {
+    id: function (newVal) {
+      this.id = newVal.id;
+    },
+    name: function (newVal) {
+      this.name = newVal.name;
+    },
+  },
 };
-
 </script>
 
 <style scoped>

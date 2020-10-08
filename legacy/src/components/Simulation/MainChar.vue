@@ -1,8 +1,8 @@
 <template>
   <img
     src="currentP"
-    :oneKeyDown="moveView"
-    :tableIndex="0"
+    v-on:keyup="moveView"
+    :tabIndex="0"
     :style="{ top: positionX + 'px', left: positionY + 'px' }"
   />
 </template>
@@ -53,6 +53,7 @@ export default {
   methods: {
     moveView: function(event) {
       var x = event.keyCode;
+      console.log('keycode ===>', x)
       var face = "";
       if (x === 87) {
         if (this.positionX <= 390 && this.positionX > 130) {
