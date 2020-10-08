@@ -35,14 +35,14 @@ export default {
       axios
         .post("/register", data)
         .then((data) => {
-          console.log(data);
+          console.log('signup data===>',data);
           if (data.data.Registred) {
             alert("Account exist");
             this.username = "";
             this.pass = "";
           } else {
             alert("Success Registration Please Pick A Character");
-            this.$emit("selectCharId");
+            this.$emit("selectCharId", data.data.id);
           }
         })
         .catch((err) => console.log(err));

@@ -50,8 +50,12 @@ app.post("/position",(req,res)=>{
 })
 
 app.post('/selectChar',(req,res)=>{ // Will Update the account skin with the selected skin from the signup0
-  console.log(req.body)
-dbF.updateskin(req.body.id,req.body.currentskin,res)
+  
+     console.log('slim : 6 save id and skin ===>',req.body)
+     dbF.updateskin(req.body.id,req.body.currentskin, res)
+     
+  
+  
 })
 
 app.post('/login',(req,res)=>{ //Deal with the login request to the server
@@ -74,8 +78,8 @@ app.post("/register", (req, res) => {
   })
 
   app.post('/fechdata',(req,res)=>{
-    console.log('app.post fetchData response and playerPosition ====>', res,playerPosition)
-res.send(playerPosition)
+    // console.log('app.post fetchData response and playerPosition ====>', res,playerPosition)
+  res.send(playerPosition)
   })
 
   app.post("/Sinvitation",(req,res)=>{

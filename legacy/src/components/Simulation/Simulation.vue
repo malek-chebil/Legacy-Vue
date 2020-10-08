@@ -1,6 +1,6 @@
 <template>
   <div id="map">
-    <h1>Mainchar</h1>
+    <Maincharacter :MainP="MpPosition" :id="id" :skin="this.data.skin" @UnmountP="UnmountP" />
     
     <Invitations v-if="displayInvitations" :id="data.Id" @hideInv="hideInv"/>
     <h1>Friends</h1>
@@ -23,12 +23,13 @@
 import axios from "axios";
 import Toast from "light-toast";
 import Invitations from './Invitations'
+import Maincharacter from './MainChar'
 // import Characters from './Chars'
 export default {
   name: "Simulation",
   components: {
-    Invitations
-    // Characters
+    Invitations,
+    Maincharacter
   },
   data() {
     return {
@@ -40,29 +41,28 @@ export default {
       id: 0,
       name: "",
       currentcharacter: "",
-      displayInvitations: true,
+      displayInvitations: false,
       displayFriends: false,
       displayChat: false,
       displayAboutUs: false,
       selectedfriend: null,
       // keyNames: this.getKeys(),
-      // s: setInterval(() => {
-      //   axios.post("/fechdata").then((result) => {
-      //     console.log('fechdata for PsPositions ===>', result.data)
-      //     this.PsPositions = result.data;
-      //   });
-      // }, 150),
-      // d: setInterval(() => {
-      //   let data = { id: this.id };
-      //   axios.post("/fetchFriends", data).then((result) => {
-      //     this.friends = result.data;
-      //   });
-      // }, 2000)
+      s: setInterval(() => {
+        axios.post("/fechdata").then((result) => {
+          console.log('fechdata for PsPositions ===>', result.data)
+          this.PsPositions = result.data;
+        });
+      }, 150),
+      d: setInterval(() => {
+        let data = { id: this.id };
+        axios.post("/fetchFriends", data).then((result) => {
+          this.friends = result.data;
+        });
+      }, 2000)
     };
   },
   props: [ 
-    "data",
-    "UserId"
+    "data"
     ],
   methods: {
     deleteposition() {
@@ -70,28 +70,29 @@ export default {
         x: this.UnmountPX,
         y: this.UnmountPY,
       };
-      axios("/deleteP", data).then(() => console.log("deleted"));
+      axios("/deleteP", data)
     },
     UnmountP(x, y) {
-      (this.UnmountPX = x), (this.UnmountPY = y);
+      this.UnmountPX = x;
+      this.UnmountPY = y;
     },
     hideInv() {
       this.displayInvitations = false;
     },
     showchat(selected) {
-      (this.displayChat = true),
-        (this.displayFriends = false),
-        (this.selectedfriend = selected.target.id * 1);
+      this.displayChat = true;
+      this.displayFriends = false;
+      this.selectedfriend = selected.target.id * 1;
     },
     tooglechatinvitations() {
-      (this.displayFriends = false),
-        (this.displayInvitations = !this.displayInvitations),
-        (this.displayChat = false);
+      this.displayFriends = false;
+      this.displayInvitations = !this.displayInvitations;
+      this.displayChat = false;
     },
     tooglefriends() {
-      (this.displayFriends = !this.displayFriends),
-        (this.displayInvitations = false),
-        (this.displayChat = false);
+      this.displayFriends = !this.displayFriends;
+      this.displayInvitations = false;
+      this.displayChat = false;
     },
     // getKeys(){
     //   console.log('My getKeys fnc for the v-for returning actual PsPositions =====>', this.PsPositions)
@@ -103,25 +104,26 @@ export default {
     //   }
   },
 
-  mounted: function () {
+  mounted(){
     this.$nextTick(function () {
-      console.log('Mounted and PsPositions is ====>', this.PsPositions)
       Toast.info(
         "Moves: \n Up : W  \n Right : D  \n Left : A \n  Down : S",
         5000
       );
-      this.$emit("UserId", this.id);
-      // let data = { 
-      //  id: this.data.Id,
-      //  Face: `./chars/${this.data.skin}/FD/fd0.png`,
-      //  skin: this.data.skin }
-    //   axios.post('/Rposition', data)
-    //   .then(() => {
-    //   setTimeout(() => {
-    //     this.UnmountPX = (this.PsPositions[this.id].split("-")[0]) * 1, 
-    //     this.UnmountPY = (this.PsPositions[this.id].split("-")[1].split("=")[0] * 1) })
-    //   }, 1000)
-    //   this.MpPosition = data.data 
+      this.$emit("UserId", this.data.id);
+      let data = { 
+       id: this.Id,
+       Face: `./chars/${this.data.skin}/FD/fd0.png`,
+       skin: this.data.skin }
+       console.log(data)
+      axios.post('/Rposition', data)
+      .then(() => {
+        console.log(data)
+      setTimeout(() => {
+        this.UnmountPX = (this.PsPositions[this.id].split("-")[0]) * 1, 
+        this.UnmountPY = (this.PsPositions[this.id].split("-")[1].split("=")[0] * 1) })
+      }, 1000)
+      this.MpPosition = data.data 
     });
   },
   beforeDestroy() {
@@ -129,14 +131,14 @@ export default {
     clearInterval(this.s);
     clearInterval(this.d);
   },
-    // watch : {
-    //    id : function(val) {
-    //      this.id = val
-    //    },
-    //    name : function(val) {
-    //      this.name = val
-    //    }
-    // }
+    watch : {
+       id : function(val) {
+         this.id = val
+       },
+       name : function(val) {
+         this.name = val
+       }
+    }
 };
 
 </script>
