@@ -1,152 +1,194 @@
 <template>
   <div id="map">
     <Maincharacter
-      MainP="{this.state.MpPosition}"
-      id="{this.state.id}"
-      skin="{this.props.data.skin}"
-      unmount="{this.UnmountP}"
+
+      :MainP="MpPosition"
+      :id="this.data.Id"
+      :skin="this.data.skin"
+      @UnmountP="UnmountP"
     />
-    {Players} {this.state.displayInvitations?<Invitations
-      id="{this.props.data.Id}"
-      hide="{this.hideInv}"
-    />:null} {this.state.displayFriends?<Friends
-      friends="{this.state.friends}"
-      chat="{this.showchat}"
-    />:null} {this.state.displayChat?<Chat
-      messages="{this.state.friends[this.state.selectedfriend]}"
-      from="{this.state.name}"
-      position="{this.state.selectedfriend}"
-    />:null}
-    <img src="Friends.png" id="FriendsLogo" onClick="{this.tooglefriends}" />
-    <img
-      src="send-m.png"
-      id="invitations"
-      onClick="{this.tooglechatinvitations}"
-    />
+
+    <Invitations v-if="displayInvitations" :id="data.Id" @hideInv="hideInv" />
+    <h1>Friends</h1>
+    <h1>Chat</h1>
+    <img src="/images/Friends.png" id="FriendsLogo" />
+    <img src="/images/send-m.png" id="invitations" />
   </div>
 </template>
+
 <script>
-import Maincharacter from "./Mainchar.jsx"
-import axios from "axios"
-import socketIOClient from "socket.io-client"
-import Characters from "./chars.jsx"
-import Chat from "./chat.jsx"
-import Friends from "./Friends.jsx"
-import Invitations from "./invitations.jsx"
+// <div
+// v-for="(keyName, keyIndex) in keyNames" :key="keyIndex"
+// >
+//   <Characters v-if="(keyName * 1) != this.id"
+//   :position="this.PsPositions[keyName]"
+//   :id="keyName"
+//   :Mid="this.id"
+//   />
+// </div>
+import axios from "axios";
 import Toast from "light-toast";
-
+import Invitations from "./Invitations";
+import Maincharacter from "./MainChar";
+// import Characters from './Chars'
 export default {
-
+  name: "Simulation",
+  components: {
+    Invitations,
+    Maincharacter,
+  },
   data() {
     return {
-        name: "Simulation",
-        components: {
-            Maincharacter,
-            Characters,
-            Chat,
-            Friends,
-            Invitations,
-        },
-  data: function (){
-      return {
-          state :{
-              UnmountPX:"",
-          UnmountPY:"",
-          friends:[],
-          MpPosition:{},
-          PsPositions:[],
-          id:0,
-          name:"",
-          currentcharacter:"",
-          displayInvitations:false,
-          displayFriends:false,
-          displayChat:false,
-          displayAboutUs:false,
-          selectedfriend:null,
-          s:setInterval(()=>{
-            axios({
-              url: '/fechdata',
-              method: 'post',
-            }).then(result=>{
-              this.setState({PsPositions:result.data})
-            })
-           },150),
-           d:setInterval(()=>{
-            axios({
-           url: '/fetchFriends',
-           method: 'post',
-           data:{id:this.state.id}
-        }).then(result=>{
-          this.setState({friends:result.data})
-        })},2000)
-     }
-  }
-          }
 
-
-      }
-
-
+      UnmountPX: "",
+      UnmountPY: "",
+      friends: [],
+      MpPosition: {},
+      PsPositions: [],
+      id: 0,
+      name: "",
+      currentcharacter: "",
+      displayInvitations: false,
+      displayFriends: false,
+      displayChat: false,
+      displayAboutUs: false,
+      selectedfriend: null,
+      // keyNames: this.getKeys(),
+      s: setInterval(() => {
+        axios.post("/fechdata").then((result) => {
+          console.log("fechdata for PsPositions ===>", result.data);
+          this.PsPositions = result.data;
+        });
+      }, 150),
+      d: setInterval(() => {
+        let data = { id: this.id };
+        axios.post("/fetchFriends", data).then((result) => {
+          this.friends = result.data;
+        });
+      }, 2000),
+    };
   },
+  props: ["data"],
   methods: {
-    deleteposition(){
-    axios({
-      url: '/deleteP',
-      method: 'post',
-      data:{x:this.UnmountPX,y:this.UnmountPY}
-    })
-   },
+
+    deleteposition() {
+      let data = {
+        x: this.UnmountPX,
+        y: this.UnmountPY,
+      };
+      axios("/deleteP", data);
+    },
+    UnmountP(x, y) {
+      this.UnmountPX = x;
+      this.UnmountPY = y;
+    },
+    hideInv() {
+      this.displayInvitations = false;
+    },
+
+    showchat(selected) {
+      this.displayChat = true;
+      this.displayFriends = false;
+      this.selectedfriend = selected.target.id * 1;
+    },
+    tooglechatinvitations() {
+      this.displayFriends = false;
+      this.displayInvitations = !this.displayInvitations;
+      this.displayChat = false;
+    },
 
 
-  UnmountP(x,y){
-    this.setState({UnmountPX:x,UnmountPY:y})
+    tooglefriends() {
+      this.displayFriends = !this.displayFriends;
+      this.displayInvitations = false;
+      this.displayChat = false;
+    },
+    // getKeys(){
+    //   console.log('My getKeys fnc for the v-for returning actual PsPositions =====>', this.PsPositions)
+    //     let keys = [];
+    //     for(let i = 0; i < this.PsPositions.length; i++){
+    //       keys.push(Object.keys(this.PsPositions[i]))
+    //     }
+    //     return keys;
+    //   }
   },
 
-  hideInv(){
-      this.setState({displayInvitations:false})
-    },
-    //////////////////
-  showchat(selected){
-    this.setState({displayChat:true,displayFriends:false,selectedfriend:(selected.target.id*1)})
+
+
+  mounted() {
+    this.$nextTick(function () {
+      Toast.info(
+        "Moves: \n Up : W  \n Right : D  \n Left : A \n  Down : S",
+        5000
+      );
+      console.log("Simul mounted this.data.id ====>", this.data.Id);
+      console.log("Simul mounted this.data.skin ====>", this.data.skin);
+      this.$emit("UserId", this.id);
+      let data = {
+        id: this.data.Id,
+        Face: `../../../public/images/chars/${this.data.skin}/FD/fd0.png`,
+        skin: this.data.skin,
+      };
+      console.log(data);
+      axios.post("/Rposition", data).then((data) => {
+        setTimeout(() => {
+          this.UnmountPX = this.PsPositions[this.id].split("-")[0] * 1;
+          this.UnmountPY =
+            this.PsPositions[this.id].split("-")[1].split("=")[0] * 1;
+        }, 1000);
+        console.log("this.UnmountPX ====>", this.UnmountPX);
+        console.log("this.UnmountPY ====>", this.UnmountPY);
+
+        this.MpPosition = data.data;
+        console.log("this.MpPosition ====>", this.MpPosition);
+      });
+    });
   },
-/////////////////////
-    tooglechatinvitations(){
-      this.setState({displayFriends:false,displayInvitations:!this.state.displayInvitations,displayChat:false})
+  beforeDestroy() {
+    this.deleteposition();
+    clearInterval(this.s);
+    clearInterval(this.d);
+  },
+  watch: {
+    id: function (newVal) {
+      this.id = newVal.id;
     },
-///////////////////
-    tooglefriends(){
-      this.setState({displayFriends:!this.state.displayFriends,displayInvitations:false,displayChat:false})
-
+    name: function (newVal) {
+      this.name = newVal.name;
     },
-//////////////////
-    static getDerivedStateFromProps(nextprops){
-      return {
-    id:nextprops.data.Id,
-    name:nextprops.data.name
-      }
-    },
-    mounted(){
-      Toast.info("Moves: \n Up : W  \n Right : D  \n Left : A \n  Down : S",5000)
-      this.props.userid(this.state.id)
-        axios({
-          url: '/Rposition',
-          method: 'post',
-          data:{id:this.props.data.Id,Face:`./chars/${this.props.data.skin}/FD/fd0.png`,skin:this.props.data.skin}
-        }).then(data=>{
-
-          setTimeout(()=>{
-            this.setState({UnmountPX:(this.state.PsPositions[this.state.id].split("-")[0])*1,UnmountPY:(this.state.PsPositions[this.state.id].split("-")[1].split("=")[0]*1)})
-          },1000)
-          this.setState({MpPosition:data.data})
-        })
-    },
-
-    beforeDestroyr(){
-      this.deleteposition()
-      clearInterval(this.state.s)
-      clearInterval(this.state.d)
-    }
-
-  }
+  },
 };
 </script>
+
+
+<style>
+#map{
+    border:solid black 4px;
+    border-radius:6px;
+    position: relative;
+    top:60px;
+    left:315px;
+    background-image: url(/images/map/map.png);
+    width: 680px;
+    height:500px;
+    margin: 0%;
+    padding: 0%;
+  }
+  #FriendsLogo{
+   margin: 0%;
+   padding: 0%;
+   width: 50px;
+   position: absolute;
+   top: 450px;
+   left: 625px;
+ }
+
+ #invitations{
+  position: absolute;
+  width: 30px;
+  top: 441px;
+  left: 566px;
+  height: 64px;
+  width: 50px;
+}
+</style>

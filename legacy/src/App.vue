@@ -14,11 +14,20 @@
       @toggleLoginSignup="toggleLoginSignup"
       v-if="displaysignup"
     />
-    <Signup0 :id="ID" @Mlogin="Mlogin" v-if="displaySignup0" />
+    <Signup0 
+    :id="Id" 
+    @Mlogin="Mlogin" 
+    v-if="displaySignup0" 
+    />
     <NavBar v-if="displaynavbar" />
+
     <Token @Pass="Pass" @newbalance="newbalance" v-if="displayToken" />
     <Shop @changebalance="changebalance" v-if="displayShop" />
     <AboutUs v-if="displayAboutUs" />
+
+
+
+
   </div>
 </template>
 <script>
@@ -27,11 +36,13 @@ import Admin from "./components/Admin";
 import Signup from "./components/Signup";
 import Signup0 from "./components/Signup0";
 import Login from "./components/Login";
-import NavBar from "./components/Navbar";
+import Navbar from "./components/Navbar";
 import Token from "./components/Token";
 import Shop from "./components/ShopAvatar/Shop";
 import AboutUs from "./components/AboutUs";
-// import Simulation from "./components/Simulation";
+import Simulation from "./components/Simulation/Simulation";
+// import Toast from "light-toast";
+
 export default {
   name: "App",
   components: {
@@ -40,28 +51,30 @@ export default {
     Signup,
     Signup0,
     Login,
-    NavBar,
+    Navbar,
     Token,
     Shop,
     AboutUs,
-    // Simulation
+    Simulation
   },
   data() {
     return {
       token: 0,
-      ID: "",
+      Id: "",
       userdata: {},
       displaynavbar: false,
       displaylogin: false,
+
       displaysignup: true,
       displaysShop: false,
+
       displaySimulation: false,
-      displaylogo: true,
+      displaylogo: false,
       displaySignup0: false,
       displayAboutUs: false,
       displayS: false,
       displayToken: false,
-      displayadmin: false,
+      displayadmin: true,
     };
   },
   methods: {
@@ -77,7 +90,7 @@ export default {
       this.token = token;
     },
     UserId(id) {
-      this.ID = id;
+      this.Id = id;
     },
     Sset() {
       this.displayS = true;
@@ -103,11 +116,13 @@ export default {
       this.displaysignup = !this.displaysignup;
     },
     UpdateData(data) {
-      this.userdata = data;
+      console.log('UserData=========>', data)
+      this.userdata = data.data;
+      console.log('UserData.data=========>', data.data)
     },
     selectCharId(id) {
       // Display the secound Signup component which is (signup0) To select the character that you will play with
-      this.ID = id;
+      this.Id = id;
       this.displaySignup0 = true;
       this.displaysignup = false;
     },
@@ -120,6 +135,7 @@ export default {
       this.displayToken = true;
     },
     Mlogin() {
+      console.log('slim : 5 mlogin here')
       this.displaySignup0 = false;
       this.displaylogin = true;
     },
