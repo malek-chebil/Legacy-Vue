@@ -21,7 +21,7 @@ export default {
       this.$emit("displaysHome")
     },
     triggerShop:function(){
-      this.$emit("displayShop")
+      this.$emit("displayShops")
     },
     triggeraboutUs:function(){
       this.$emit("displayaboutUs")

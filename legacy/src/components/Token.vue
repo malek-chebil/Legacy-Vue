@@ -28,7 +28,7 @@ props :[
       setTimeout(() => {
         axios.post("/balanceF", data).then((result) => {
           this.balance = result.data.balance;
-          this.$emit("Pass" ,result.data.balance);
+          this.$emit("PassTokenToParent" ,result.data.balance);
         });
       }, 100);
     },
