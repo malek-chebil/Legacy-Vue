@@ -20,6 +20,7 @@
     v-if="displaySignup0" 
     />
     <NavBar v-if="displaynavbar" />
+
     <Token v-if="displayToken" />
     <Shop v-if="displayshop" />
     <AboutUs v-if="displayAboutUs"/>
@@ -35,7 +36,7 @@ import Admin from "./components/Admin";
 import Signup from "./components/Signup";
 import Signup0 from "./components/Signup0";
 import Login from "./components/Login";
-import NavBar from "./components/Navbar";
+import Navbar from "./components/Navbar";
 import Token from "./components/Token";
 import Shop from "./components/ShopAvatar/Shop";
 import AboutUs from "./components/AboutUs";
@@ -50,7 +51,7 @@ export default {
     Signup,
     Signup0,
     Login,
-    NavBar,
+    Navbar,
     Token,
     Shop,
     AboutUs,
@@ -61,17 +62,17 @@ export default {
       token: 0,
       Id: "",
       userdata: {},
-      displaynavbar: false,
+      displaynavbar: true,
       displaylogin: false,
-      displaysignup: true,
+      displaysignup: false,
       displayshop: false,
       displaySimulation: false,
-      displaylogo: true,
+      displaylogo: false,
       displaySignup0: false,
       displayAboutUs: false,
       displayS: false,
       displayToken: false,
-      displayadmin: false,
+      displayadmin: true,
     };
   },
   methods: {
