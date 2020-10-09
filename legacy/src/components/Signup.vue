@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="body" >
     <h1>Sign Up</h1>
     <input type="username" placeholder="Username" v-model="username" required />
     <br />

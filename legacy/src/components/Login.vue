@@ -1,6 +1,6 @@
 <template>
-  <div className="body">
-    <h1 className="LoginS">Login</h1>
+  <div class="body">
+    <h1 class="LoginS">Login</h1>
     <input type="username" placeholder="Username" v-model="username" />
     <br />
     <input type="password" placeholder="Password" v-model="password"/>
