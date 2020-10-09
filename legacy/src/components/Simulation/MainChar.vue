@@ -1,10 +1,12 @@
 <template>
+
   <img
     src="currentP"
     v-on:keyup="moveView"
     :tabIndex="0"
     :style="{ top: positionX + 'px', left: positionY + 'px' }"
   />
+
 </template>
 <script>
 import axios from "axios";
@@ -49,6 +51,8 @@ export default {
       this.Id = this.id;
       this.character = this.skin;
     }, 1500);
+    console.log("this.positionX ===", this.positionX);
+    console.log("this.positionY ===", this.positionY);
   },
   methods: {
     moveView: function(event) {

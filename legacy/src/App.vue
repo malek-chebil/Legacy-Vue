@@ -19,7 +19,7 @@
     @Mlogin="Mlogin" 
     v-if="displaySignup0" 
     />
-    <NavBar v-if="displaynavbar" />
+    <NavBar v-if="displaynavbar" @displaysHome="displaysHome" @displayShop="displayShop" @displayaboutUs="displayaboutUs" />
 
     <Token @Pass="Pass" @newbalance="newbalance" v-if="displayToken" />
     <Shop @changebalance="changebalance" v-if="displayShop" />
@@ -36,7 +36,7 @@ import Admin from "./components/Admin";
 import Signup from "./components/Signup";
 import Signup0 from "./components/Signup0";
 import Login from "./components/Login";
-import Navbar from "./components/Navbar";
+import NavBar from "./components/Navbar";
 import Token from "./components/Token";
 import Shop from "./components/ShopAvatar/Shop";
 import AboutUs from "./components/AboutUs";
@@ -51,7 +51,7 @@ export default {
     Signup,
     Signup0,
     Login,
-    Navbar,
+    NavBar,
     Token,
     Shop,
     AboutUs,
@@ -64,9 +64,8 @@ export default {
       userdata: {},
       displaynavbar: false,
       displaylogin: false,
-
       displaysignup: true,
-      displaysShop: false,
+      displayshop: false,
 
       displaySimulation: false,
       displaylogo: false,
@@ -74,7 +73,7 @@ export default {
       displayAboutUs: false,
       displayS: false,
       displayToken: false,
-      displayadmin: true,
+      displayadmin: false,
     };
   },
   methods: {
