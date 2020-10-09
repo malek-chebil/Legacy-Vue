@@ -37,3 +37,46 @@ export default {
   },
 };
 </script>
+<style>
+#items{
+  width: 193px;
+    height: 238px;
+    margin-top: 9px;
+    border: 1px solid black;
+
+}
+.avatar_image {
+  /* text-align: center; */
+  
+  position: relative;
+  left: 37px;
+  height: 77px;
+  top: 7px;
+}
+.avatar_name {
+  width: auto;
+  text-align: center;
+  color: #aaaabb;
+  height: 41px;
+  position: relative;
+  left: -2px;
+  font-size: 21px;
+}
+.avatar_price {
+  position: relative;
+  left: 66px;
+  font-size: 19px;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+#btnchop{
+  margin-left: 33px;
+    position: relative;
+    left: -11px;
+    font-size: 9px;
+}
+.btn {
+  margin-left: 30px;
+  position: relative;
+  left: -20px;
+}
+</style>>

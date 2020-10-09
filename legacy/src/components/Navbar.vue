@@ -35,8 +35,9 @@ export default {
 </script>
 <style>
 .container {
-  position: relative;
-  left: 364px;
+position: relative;
+    left: 364px;
+    width: 311px;
 }
 .container ul {
   color: white;

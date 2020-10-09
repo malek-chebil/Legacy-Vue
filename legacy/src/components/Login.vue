@@ -1,7 +1,7 @@
 <template>
   <div class="body">
     <h1 class="LoginS">Login</h1>
-    <input type="username" placeholder="Username" v-model="username" />
+    <input  type="username" placeholder="Username" v-model="username" />
     <br />
     <input type="password" placeholder="Password" v-model="password"/>
     <br />
@@ -66,8 +66,8 @@ export default {
 <style>
 .body {
     position: relative;
-    top:50px;
-    left:450px;
+    top: 29px;
+    left: 450px;
     background: #f6f5f7;
     display: flex;
     justify-content: center;
@@ -79,6 +79,10 @@ export default {
     border: #592bff;
     border-radius: 10%;
     border-style: solid;
+  }
+  input{
+        border-radius: 6px;
+    border-color: black;
   }
   .LoginS{
     position: relative;

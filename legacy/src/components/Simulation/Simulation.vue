@@ -175,14 +175,14 @@ export default {
 
 <style>
 #map{
-    border:solid black 4px;
-    border-radius:6px;
+    border: solid #a2a2a273 4px;
+    border-radius: 6px;
     position: relative;
-    top:60px;
-    left:315px;
+    top: 17px;
+    left: 315px;
     background-image: url(/images/map/map.png);
     width: 680px;
-    height:500px;
+    height: 500px;
     margin: 0%;
     padding: 0%;
   }
@@ -203,4 +203,5 @@ export default {
   height: 64px;
   width: 50px;
 }
+
 </style>

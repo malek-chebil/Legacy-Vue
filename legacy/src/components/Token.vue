@@ -1,6 +1,6 @@
 <template>
   <div id="tokens">
-    <img src="/image/token.png" alt="" id="tokenImage" />
+    <img src="/images/token.png" alt="" id="tokenImage" />
     <h3 id="token">{{ this.balance }}_MJ</h3>
   </div>
 

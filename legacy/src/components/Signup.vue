@@ -57,10 +57,14 @@ export default {
 
 
 <style>
+input{
+        border-radius: 6px;
+    border-color: black;
+  }
 .body {
     position: relative;
-    top:50px;
-    left:450px;
+    top: 29px;
+    left: 450px;
     background: #f6f5f7;
     display: flex;
     justify-content: center;
