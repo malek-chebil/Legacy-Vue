@@ -33,17 +33,32 @@
       id="Fid"
       type="text"
       placeholder="send us a feedback or find support"
-      onChange="{this.handleCange}"
       required
+      v-model="feedback"
     />
-    <button id="feedback" onClick="{this.handleClick}">
-      send
-    </button>
+    <button @click="sendFB" id="feedback">send</button>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+import Toast from "light-toast";
+
 export default {
-    name : 'AboutUs'
-}
+  name: "AboutUs",
+  data() {
+    return {
+      feedback: "",
+    };
+  },
+  methods: {
+    sendFB() {
+      let data = {
+        feedback: this.feedback,
+      };
+      axios.post("/feedbacks", data).catch((err) => console.log(err));
+      Toast.success('Thank for the Feedback', 1500, ()=>{location.reload()})
+    },
+  },
+};
 </script>
