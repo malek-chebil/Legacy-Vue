@@ -28,9 +28,6 @@
       :data="userdata"
       @UserId="UserId"
        />
-
-
-
   </div>
 </template>
 <script>

@@ -23,6 +23,7 @@ export default {
       let data = {
         id: this.id,
         to: this.id,
+        display:false,
       };
       console.log("mounted Invitations");
 

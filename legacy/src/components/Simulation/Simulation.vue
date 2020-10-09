@@ -1,5 +1,7 @@
 <template>
   <div id="map">
+        <Friends v-if="displayFriends" />
+
     <Maincharacter
 
       :MainP="MpPosition"
@@ -8,10 +10,12 @@
       @UnmountP="UnmountP"
     />
 
+    <Chat v-if="displayChat"/>
+
     <Invitations v-if="displayInvitations" :id="data.Id" @hideInv="hideInv" />
     <!-- <Friends :friends="friends" @showchat="showchat" /> -->
     <!-- <Chat :messages="friends[selectedfriend]" :from="name" :position="selectedfriend" /> -->
-    <img src="/images/Friends.png" id="FriendsLogo" @click="tooglechatinvitations" />
+    <img src="/images/Friends.png" id="FriendsLogo" @click="showchat" />
     <img src="/images/send-m.png" id="invitations" @click="tooglefriends"  />
   </div>
 </template>
@@ -28,8 +32,8 @@
 // </div>
 import axios from "axios";
 import Toast from "light-toast";
-// import Friends from './Friends';
-// import Chat from './Chat';
+import Friends from './Friends.vue';
+import Chat from './Chat';
 import Invitations from "./Invitations";
 import Maincharacter from "./MainChar";
 // import Characters from './Chars'
@@ -38,8 +42,8 @@ export default {
   components: {
     Invitations,
     Maincharacter,
-    // Friends,
-    // Chat
+    Friends,
+    Chat
   },
   data() {
     return {
@@ -91,7 +95,7 @@ export default {
     },
 
     showchat(selected) {
-      this.displayChat = true;
+      this.displayChat = !this.displayChat;
       this.displayFriends = false;
       this.selectedfriend = selected.target.id * 1;
     },
@@ -103,10 +107,12 @@ export default {
 
 
     tooglefriends() {
+  
       this.displayFriends = !this.displayFriends;
       this.displayInvitations = false;
       this.displayChat = false;
     },
+ 
     
     // getKeys(){
     //   console.log('My getKeys fnc for the v-for returning actual PsPositions =====>', this.PsPositions)
