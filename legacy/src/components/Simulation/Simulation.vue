@@ -1,6 +1,7 @@
 <template>
   <div id="map">
     <Maincharacter
+
       :MainP="MpPosition"
       :id="this.data.Id"
       :skin="this.data.skin"
@@ -42,6 +43,7 @@ export default {
   },
   data() {
     return {
+
       UnmountPX: "",
       UnmountPY: "",
       friends: [],
@@ -61,6 +63,7 @@ export default {
   },
   props: ["data"],
   methods: {
+
     deleteposition() {
       let data = {
         x: this.UnmountPX,
@@ -75,6 +78,7 @@ export default {
     hideInv() {
       this.displayInvitations = false;
     },
+
     showchat(selected) {
       this.displayChat = true;
       this.displayFriends = false;
@@ -85,6 +89,8 @@ export default {
       this.displayInvitations = !this.displayInvitations;
       this.displayChat = false;
     },
+
+
     tooglefriends() {
       this.displayFriends = !this.displayFriends;
       this.displayInvitations = false;
@@ -111,6 +117,8 @@ export default {
     //     return keys;
     //   }
   },
+
+
 
   mounted() {
     this.$nextTick(function () {
