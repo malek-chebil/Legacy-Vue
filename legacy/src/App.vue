@@ -19,7 +19,8 @@
     @Mlogin="Mlogin" 
     v-if="displaySignup0" 
     />
-    <NavBar v-if="displaynavbar" />
+    <NavBar v-if="displaynavbar" @displaysHome="displaysHome" @displayShop="displayShop" @displayaboutUs="displayaboutUs" />
+
     <Token v-if="displayToken" />
     <Shop v-if="displayshop" />
     <AboutUs v-if="displayAboutUs"/>
@@ -66,7 +67,7 @@ export default {
       displaysignup: true,
       displayshop: false,
       displaySimulation: false,
-      displaylogo: true,
+      displaylogo: false,
       displaySignup0: false,
       displayAboutUs: false,
       displayS: false,

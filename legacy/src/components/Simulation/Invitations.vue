@@ -1,11 +1,11 @@
 <template>
   <div id="invcontainer">
-    <div v-for="elem in Invitations" :key="elem.id">
-      <div className="invitations">You have invitation from{{ elem.from }}</div>
+    <!-- <div v-for="elem in Invitations" :key="elem.id"> -->
+      <div className="invitations">You have invitation from</div>
       <img src="/images/tick-logo.png" @click="acceptinvitation" />
       <img src="/images/x-logo.png" @click="rejectinvitation" />
     </div>
-  </div>
+  <!-- </div> -->
 </template>
 <script>
 import axios from "axios"
@@ -14,25 +14,25 @@ export default {
     name:"Invitations",
     data() {
         return {
-             Invitations:['achref invited you']
+             Invitations:['achref']
         }
     },
     props : [
         "id"
     ],
     methods:{
-        rejectinvitation(e){
+        rejectinvitation(event){
             let data ={
                 to : this.id,
-                id : e.target.id
+                id : event.target.id
             }
             this.$emit("hideInv")
             axios.post("/rejectinvitation" ,data)
         },
-        acceptinvitation(e){
+        acceptinvitation(event){
             let data={
                 to : this.id,
-                id : e.target.id
+                id : event.target.id
             }
             this.$emit("hideInv")
             axios.post("/acceptinvitation" , data)
