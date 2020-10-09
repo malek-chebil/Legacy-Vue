@@ -1,7 +1,7 @@
 <template>
 
   <img
-    src="currentP"
+    src="/images/chars/0/FD/fd0.png"
     v-on:keyup="moveView"
     :tabIndex="0"
     :style="{ top: positionX + 'px', left: positionY + 'px' }"
@@ -37,14 +37,24 @@ export default {
           u2: `../../../public/images/chars/${this.skin}/FU/fu2.png`,
         },
       ],
-      currentP: `../../../public/images/chars/${this.skin}/FD/fd0.png`,
-      positionX: 230,
-      positionY: 490,
     };
   },
   props: ["skin", "id", "MainP"],
+  computed: {
+    currentP: function () {
+      return "../../../public/images/chars/"+ this.skin +"/FD/fd0.png";
+    },
+    positionX: function(){
+      return 230
+    },
+    positionY: function(){
+      return 490
+    }
+  },
   mounted() {
-    console.log("called");
+    this.currentP();
+    this.positionX();
+    this.positionY();
     setTimeout(() => {
       this.positionX = this.MainP.x * 10 + 130;
       this.positionY = this.MainP.y * 10 + 100;

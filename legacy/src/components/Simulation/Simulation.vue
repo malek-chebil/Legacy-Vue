@@ -58,7 +58,18 @@ export default {
       displayAboutUs: false,
       selectedfriend: null,
       // keyNames: this.getKeys(),
-      
+      s: setInterval(() => {
+        axios.post("/fechdata").then((result) => {
+          console.log("fechdata for PsPositions ===>", result.data);
+          this.PsPositions = result.data;
+        });
+      }, 150),
+    d: setInterval(() => {
+      let data = { id: this.id };
+      axios.post("/fetchFriends", data).then((result) => {
+        this.friends = result.data;
+      });
+    }, 2000),
     };
   },
   props: ["data"],
@@ -96,18 +107,7 @@ export default {
       this.displayInvitations = false;
       this.displayChat = false;
     },
-    s: setInterval(() => {
-        axios.post("/fechdata").then((result) => {
-          console.log("fechdata for PsPositions ===>", result.data);
-          this.PsPositions = result.data;
-        });
-      }, 150),
-    d: setInterval(() => {
-      let data = { id: this.id };
-      axios.post("/fetchFriends", data).then((result) => {
-        this.friends = result.data;
-      });
-    }, 2000),
+    
     // getKeys(){
     //   console.log('My getKeys fnc for the v-for returning actual PsPositions =====>', this.PsPositions)
     //     let keys = [];
