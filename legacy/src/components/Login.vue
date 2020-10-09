@@ -5,8 +5,8 @@
     <br />
     <input type="password" placeholder="Password" v-model="password"/>
     <br />
-    <button @click="AxiosLogin">Login</button>
-    <h5>Create new <a href="#" @click="toggle">Account</a></h5>
+    <button id="loginB" @click="AxiosLogin">Login</button>
+    <h5 id='Sign' >Create new <a href="#" @click="toggle">Account</a></h5>
   </div>
 </template>
 <script>
@@ -62,6 +62,7 @@ export default {
   },
 };
 </script>
+
 <style>
 .body {
     position: relative;

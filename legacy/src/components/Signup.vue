@@ -1,5 +1,6 @@
 <template>
-  <div class="body" >
+
+  <div class="body">
     <h1>Sign Up</h1>
     <input type="username" placeholder="Username" v-model="username" required />
     <br />
@@ -53,7 +54,9 @@ export default {
   },
 };
 </script>
-<style >
+
+
+<style>
 .body {
     position: relative;
     top:50px;
@@ -69,5 +72,18 @@ export default {
     border: #592bff;
     border-radius: 10%;
     border-style: solid;
+  }
+
+  button {
+    border-radius: 20px;
+    border: 1px solid black;
+    background-color: #592bff;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
   }
 </style>
