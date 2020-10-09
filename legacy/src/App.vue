@@ -14,13 +14,18 @@
       @toggleLoginSignup="toggleLoginSignup"
       v-if="displaysignup"
     />
-    <Signup0 :id="this.ID" @Mlogin="Mlogin" v-if="displaySignup0" />
-    <Navbar v-if="displaynavbar" />
+    <Signup0 
+    :id="Id" 
+    @Mlogin="Mlogin" 
+    v-if="displaySignup0" 
+    />
+    <NavBar v-if="displaynavbar" />
+
     <Token v-if="displayToken" />
     <Shop v-if="displayshop" />
     <AboutUs v-if="displayAboutUs"/>
     <Simulation v-if="displaySimulation" 
-      :data="this.userdata"
+      :data="userdata"
       @UserId="UserId"
        />
   </div>
@@ -55,7 +60,7 @@ export default {
   data() {
     return {
       token: 0,
-      ID: "",
+      Id: "",
       userdata: {},
       displaynavbar: true,
       displaylogin: false,
@@ -83,7 +88,7 @@ export default {
       this.token = token;
     },
     UserId(id) {
-      this.ID = id;
+      this.Id = id;
     },
     Sset() {
       this.displayS = true;
@@ -109,11 +114,13 @@ export default {
       this.displaysignup = !this.displaysignup;
     },
     UpdateData(data) {
-      this.userdata = data;
+      console.log('UserData=========>', data)
+      this.userdata = data.data;
+      console.log('UserData.data=========>', data.data)
     },
     selectCharId(id) {
       // Display the secound Signup component which is (signup0) To select the character that you will play with
-      this.ID = id;
+      this.Id = id;
       this.displaySignup0 = true;
       this.displaysignup = false;
     },
@@ -126,6 +133,7 @@ export default {
       this.displayToken = true;
     },
     Mlogin() {
+      console.log('slim : 5 mlogin here')
       this.displaySignup0 = false;
       this.displaylogin = true;
     },

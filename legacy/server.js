@@ -4,7 +4,6 @@ const port = 3000
 const portS = process.env.PORT || 4001;
 const http = require("http");
 const mongoose=require("mongoose")
-const socketIo = require("socket.io");
 const { random } = require('./Game/game');
 const game=require("./Game/game")
 const dbF=require("./db/schema");
@@ -50,8 +49,12 @@ app.post("/position",(req,res)=>{
 })
 
 app.post('/selectChar',(req,res)=>{ // Will Update the account skin with the selected skin from the signup0
-  console.log(req.body)
-dbF.updateskin(req.body.id,req.body.currentskin,res)
+  
+     console.log('slim : 6 save id and skin ===>',req.body)
+     dbF.updateskin(req.body.id,req.body.currentskin, res)
+     
+  
+  
 })
 
 app.post('/login',(req,res)=>{ //Deal with the login request to the server
@@ -68,14 +71,15 @@ app.post("/register", (req, res) => {
   })
 
   app.post("/Rposition",(req,res)=>{ // Randomly Chose an empty place for the newuser in the Matrix
-    console.log(req.body)
+    console.log('data sent to position id ===>',req.body)
+    // console.log('res from setting the position===>',res)
     randomSpawn(req.body.id,res,req)
     console.table(matrix)
   })
 
   app.post('/fechdata',(req,res)=>{
-    console.log('app.post fetchData response and playerPosition ====>', res,playerPosition)
-res.send(playerPosition)
+    // console.log('app.post fetchData response and playerPosition ====>', res,playerPosition)
+  res.send(playerPosition)
   })
 
   app.post("/Sinvitation",(req,res)=>{
@@ -183,7 +187,9 @@ var randomSpawn = function(id,res,req){
   var y=game.random("y")
   if(matrix[x][y]===0){
      matrix[x][y]=id
-     playerPosition[req.body.id]=(130+(x*10))+"-"+(100+(y*10))+"="+req.body.Face+"?"+req.body.skin
+     playerPosition[req.body.id]=(130+(x*10))+"-"+(100+(y*10))+"="+req.body.Face+"?"+req.body.skin;
+     console.log('this is the undefined in matrix ====>', req.body )
+     console.log('this is the new position ====>', {x:x,y:y} )
      res.send({x:x,y:y})
 
   }else{

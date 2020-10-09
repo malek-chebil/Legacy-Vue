@@ -35,7 +35,7 @@ export default {
       console.log(data)
       axios.post("/login", data).then((data) => {
         data = data.data;
-        console.log(data);
+        console.log('this is it============>',data);
         if (data.Banned) {
           Toast.fail(
             `you are banned because ${data.Reason} you will be unbanned in ${data.Periode}`,
@@ -47,7 +47,7 @@ export default {
           } else {
             if (data.Registred) {
               Toast.success("Success Login", 2500);
-              this.$emit("updatedata", data);
+              this.$emit("UpdateData", data);
               this.$emit("startS");
             } else {
               (this.username = ""), (this.password = "");
@@ -62,7 +62,6 @@ export default {
   },
 };
 </script>
-
 
 <style>
 .body {

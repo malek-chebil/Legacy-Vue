@@ -1,4 +1,5 @@
 <template>
+
   <div class="body">
     <h1>Sign Up</h1>
     <input type="username" placeholder="Username" v-model="username" required />
@@ -35,14 +36,14 @@ export default {
       axios
         .post("/register", data)
         .then((data) => {
-          console.log(data);
+          console.log('signup data===>',data);
           if (data.data.Registred) {
             alert("Account exist");
             this.username = "";
             this.pass = "";
           } else {
             alert("Success Registration Please Pick A Character");
-            this.$emit("selectCharId");
+            this.$emit("selectCharId", data.data.id);
           }
         })
         .catch((err) => console.log(err));
@@ -53,6 +54,7 @@ export default {
   },
 };
 </script>
+
 
 <style>
 .body {
@@ -71,6 +73,7 @@ export default {
     border-radius: 10%;
     border-style: solid;
   }
+
   button {
     border-radius: 20px;
     border: 1px solid black;
@@ -83,4 +86,4 @@ export default {
     text-transform: uppercase;
     transition: transform 80ms ease-in;
   }
-</style>>
+</style>
