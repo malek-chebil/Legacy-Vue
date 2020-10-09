@@ -19,12 +19,15 @@
     @Mlogin="Mlogin" 
     v-if="displaySignup0" 
     />
-    <NavBar v-if="displaynavbar" @displaysHome="displaysHome" @displayShop="displayShop" @displayaboutUs="displayaboutUs" />
+    <NavBar v-if="displaynavbar" @displaysHome="displaysHome" @displayShops="displayShops" @displayaboutUs="displayaboutUs" />
 
-    <Token @Pass="Pass" @newbalance="newbalance" v-if="displayToken" />
-    <Shop @changebalance="changebalance" v-if="displayShop" />
+    <Token @PassTokenToParent="PassTokenToParent" @newbalance="newbalance" v-if="displayToken" />
+    <Shop @changebalance="changebalance" :token="token" :Id="Id" v-if="displayShop"/>
     <AboutUs v-if="displayAboutUs" />
-
+    <Simulation v-if="displaySimulation" 
+      :data="userdata"
+      @UserId="UserId"
+       />
 
 
 
@@ -65,8 +68,7 @@ export default {
       displaynavbar: false,
       displaylogin: true,
       displaysignup: false,
-      displayshop: false,
-
+      displayShop: false,
       displaySimulation: false,
       displaylogo: false,
       displaySignup0: false,
@@ -74,6 +76,7 @@ export default {
       displayS: false,
       displayToken: false,
       displayadmin: false,
+      newbalance: 0
     };
   },
   methods: {
@@ -99,7 +102,7 @@ export default {
       this.displaySimulation = true;
       this.displayShop = false;
     },
-    displayShop() {
+    displayShops() {
       this.displayAboutUs = false;
       this.displaySimulation = false;
       this.displayShop = true;

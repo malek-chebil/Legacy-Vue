@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div className="card" id="items">
-      <img className="avatar_image" src="{this.image}" />
-      <h1 className="avatar_name" id="avName">
+    <div class="card" id="items">
+      <img class="avatar_image" :src="image" />
+      <h1 class="avatar_name" id="avName">
         {{ this.avatar }}
       </h1>
-      <h2 className="avatar_price" id="avPrice">{{ this.price }}M-J</h2>
-      <button className="btn" id="btnchop" @click="updateBalance">
+      <h2 class="avatar_price" id="avPrice">{{ this.price }}M-J</h2>
+      <button class="btn" id="btnchop" @click="updateBalance">
         purchase
       </button>
     </div>
@@ -16,7 +16,13 @@
 <script>
 export default {
   name: "Avatar",
-
+  props : [
+    "avatar",
+    "Id",
+    "image",
+    "price",
+    "balance"
+  ],
   methods: {
     updateBalance() {
       if (this.balance >= this.price) {

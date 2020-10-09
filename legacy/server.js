@@ -155,10 +155,13 @@ app.post("/banaccount", async (req, res) => {
   dbF.banaccount(req.body.username,req.body.reason,req.body.date,res)
   });
 
-  app.get("/shop", (req, res) => {
-    dbF.Avatar.find({}, (err, data) => {
-      err ? console.log(err) : res.send(data);
-    });
+  app.get("/shop", async (req, res) => {
+    try {
+      const data = await dbF.Avatar.find()
+      res.send(data)
+    } catch(e) {
+      console.log(e);
+    }
   });
   
   app.post("/purchase", async (req, res) => {
