@@ -53,3 +53,21 @@ export default {
   },
 };
 </script>
+<style >
+.body {
+    position: relative;
+    top:50px;
+    left:450px;
+    background: #f6f5f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: "Montserrat", sans-serif;
+    height: 65vh;
+    width: 400px;
+    border: #592bff;
+    border-radius: 10%;
+    border-style: solid;
+  }
+</style>

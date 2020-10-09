@@ -152,5 +152,35 @@ export default {
 };
 </script>
 
-<style scoped>
+
+<style>
+#map{
+    border:solid black 4px;
+    border-radius:6px;
+    position: relative;
+    top:60px;
+    left:315px;
+    background-image: url(/images/map/map.png);
+    width: 680px;
+    height:500px;
+    margin: 0%;
+    padding: 0%;
+  }
+  #FriendsLogo{
+   margin: 0%;
+   padding: 0%;
+   width: 50px;
+   position: absolute;
+   top: 450px;
+   left: 625px;
+ }
+
+ #invitations{
+  position: absolute;
+  width: 30px;
+  top: 441px;
+  left: 566px;
+  height: 64px;
+  width: 50px;
+}
 </style>
