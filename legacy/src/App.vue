@@ -63,12 +63,12 @@ export default {
       Id: "",
       userdata: {},
       displaynavbar: false ,
-      displaylogin: false,
+      displaylogin: true,
       displaysignup: false,
       displayShop: false,
       displaySimulation: false,
-      displaylogo: false,
-      displaySignup0: true,
+      displaylogo: true,
+      displaySignup0: false,
       displayAboutUs: false,
       displayS: false,
       displayToken: false,
@@ -141,4 +141,6 @@ export default {
   },
 };
 </script>
-<style></style>
+<style>
+
+</style>

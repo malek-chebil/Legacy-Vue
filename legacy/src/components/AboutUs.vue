@@ -68,7 +68,7 @@ export default {
 </script>
 <style >
 .aboutus {
-  color:white;
+  color:rgb(17, 2, 14);
   position: relative;
   top: 16px;
   left: 250px;
@@ -89,18 +89,19 @@ export default {
 #feedback {
 background-color: #ff2626;
     position: relative;
-    top: 80px;
+    top: 82px;
     left: -289px;
     width: 186px;
 }
 #Fid{
   position: relative;
-    top: 30px;
+    top: 60px;
     left: 99px;
     border-radius: 5px;
     font-size: 25px;
     height: 36px;
     width: 565px;
+    text-align: center;
 }
 #abs{
     position: relative;
@@ -134,7 +135,12 @@ position: relative;
     font-size: 33px;
 }
 #text{
-  text-align: center;
+      text-align: center;
+    color: darkslateblue;
+    background-color: #f6f5f7;
+    border: 1px solid black;
+    width: 1164px;
+    margin-left: 100px;
 }
 #team{
   position: relative;

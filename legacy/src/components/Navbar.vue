@@ -40,7 +40,7 @@ position: relative;
     width: 311px;
 }
 .container ul {
-  color: white;
+  color: blackr;
   display: flex;
   padding: 0;
   margin: 0;
@@ -61,11 +61,11 @@ ul li::before {
   left: 0;
   width: 100%;
   height: 2px;
-  background-color: white;
+  background-color: black;
   transition: all 0.2s;
 }
 ul li:hover {
-  background-color: rgb(255, 63, 63);
+  background-color:coral;
 }
 ul li:hover::before {
   bottom: 56px;
