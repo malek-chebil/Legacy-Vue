@@ -81,7 +81,6 @@ export default {
   position: relative;
   left: 273px;
 }
-
 #userBann {
   position: relative;
   width: 394px;
@@ -89,7 +88,6 @@ export default {
   margin-top: 33px;
   top: 68px;
 }
-
 #repo {
   border: 1px solid black;
   width: 416px;
@@ -100,7 +98,6 @@ export default {
   overflow-y: auto;
   overflow-x: hidden;
 }
-
 #repN {
   position: relative;
   left: 146px;
@@ -134,20 +131,17 @@ export default {
     opacity: 0.9;
     border-radius: 0px;
 }
-
 #feed {
   position: relative;
   left: 287px;
   top: -19px;
 }
-
 #back {
   position: relative;
   top: -74px;
   left: -47px;
   padding: 8px;
 }
-
 #feeds {
   border: 2px solid black;
   position: relative;
@@ -158,7 +152,6 @@ export default {
   overflow-y: scroll;
   overflow-x: visible;
 }
-
 #feedhold {
   border: 2px solid rgb(255, 255, 255);
   width: 807px;

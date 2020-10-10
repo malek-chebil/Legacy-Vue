@@ -19,7 +19,7 @@
         <form class="text-bar__field" id="form-message">
             <input type="text" placeholder="Text" id="msginput" />
         </form>
-        <div id="sendmsg" onClick="{this.sendmessage}">Send</div>
+        <div id="sendmsg" @Click="sendmessage">Send</div>
         </div>
   </div>
 </template>
@@ -45,12 +45,12 @@ export default {
 }
 
 .conversation {
- border-radius:5px;
-  background: black;
-  height: calc(100% - 50px);
-  overflow: auto;
-  padding: 20px;
-  padding-bottom: 0;
+border-radius: 7px;
+    background: black;
+    height: calc(100% - 50px);
+    overflow: auto;
+    padding: 20px;
+    padding-bottom: 0px
 }
 .messages {
   margin-bottom: 10px;
@@ -98,6 +98,18 @@ export default {
   width: 20px;
   height: 20px;
   border-radius: 0px !important;
+}
+#msginput{
+  position: absolute;
+    width: 102px;
+    height: 18px;
+    padding: 0 20px;
+    border: none;
+    position: relative;
+    vertical-align: middle;
+    font-size: 19px;
+    border-radius: 15px;
+    top: 2px;
 }
 .text-bar {
   height: 50px;
